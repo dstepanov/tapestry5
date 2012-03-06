@@ -34,4 +34,18 @@ import java.lang.annotation.Target;
 @Documented
 public @interface Startup
 {
+    /**
+     * Unique id for the startup contribution.
+     * 
+     * @since 5.4
+     */
+    String id() default "";
+    
+    /**
+     * Constraints used to order the startup contribution relative to other contributions.
+     * 
+     * @since 5.4
+     */
+    String[] constraints() default {};
+	
 }

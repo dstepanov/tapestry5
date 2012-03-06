@@ -16,6 +16,7 @@ package org.apache.tapestry5.ioc;
 
 import org.apache.tapestry5.ioc.internal.*;
 import org.apache.tapestry5.ioc.internal.services.StartupModule2;
+import org.apache.tapestry5.ioc.internal.services.StartupModule3;
 import org.apache.tapestry5.ioc.services.*;
 import org.apache.tapestry5.ioc.util.NonmatchingMappedConfigurationOverrideModule;
 import org.easymock.EasyMock;
@@ -1579,6 +1580,22 @@ public class IntegrationTest extends IOCInternalTestCase
         assertTrue(StartupModule2.instanceStartupInvoked);
 
         r.shutdown();
+    }
+    
+    @Test
+    public void startup_order_module()
+    {
+    	Registry r = buildRegistry(StartupModule3.class);
+    	
+    	assertTrue(StartupModule3.startupOrder.isEmpty());
+    	
+    	r.performRegistryStartup();
+    	
+    	assertEquals(StartupModule3.startupOrder.get(0), "first");
+    	assertEquals(StartupModule3.startupOrder.get(1), "second");
+    	assertEquals(StartupModule3.startupOrder.get(2), "third");
+    	
+    	r.shutdown();
     }
 
     @Test

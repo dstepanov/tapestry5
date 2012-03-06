@@ -233,8 +233,10 @@ public class DefaultModuleDefImpl implements ModuleDef2, ServiceDefAccumulator
     private void addStartupDef(Method method)
     {
         Set<Class> markers = Collections.emptySet();
+        
+        Startup startup = method.getAnnotation(Startup.class);
 
-        ContributionDef2 def = new ContributionDefImpl("RegistryStartup", method, false, proxyFactory, Runnable.class, markers);
+        ContributionDef2 def = new RunnableContributionDefImpl("RegistryStartup", method, false, proxyFactory, Runnable.class, markers, startup.id(), startup.constraints());
 
         contributionDefs.add(def);
     }
