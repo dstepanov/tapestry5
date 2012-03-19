@@ -94,7 +94,7 @@ public class RunnableContributionDefImpl implements ContributionDef3
     {
     	if(id == null || id.isEmpty())
     	{
-    		return contributorMethod.getDeclaringClass().getSimpleName() + "#" + contributorMethod.getName();
+    		return contributorMethod.getDeclaringClass().getSimpleName() + "." + contributorMethod.getName();
     	}
     	return id;
     }

@@ -23,8 +23,12 @@ import java.lang.annotation.Target;
 /**
  * Used with a service decorator method to control the order in which decorations occur. Identifies other decorators
  * which should occur before the annotated decorator.
- *
+ * <p/>
+ * This annotation can also be used to specify the order of the startup contribution when it is defined using
+ * the @Startup annotation.
+ * 
  * @see org.apache.tapestry5.ioc.def.DecoratorDef
+ * @see org.apache.tapestry5.ioc.annotations.Startup
  */
 @Target(METHOD)
 @Retention(RUNTIME)

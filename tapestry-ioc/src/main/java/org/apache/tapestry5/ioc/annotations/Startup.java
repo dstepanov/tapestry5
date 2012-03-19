@@ -39,13 +39,6 @@ public @interface Startup
      * 
      * @since 5.4
      */
-    String id() default "";
-    
-    /**
-     * Constraints used to order the startup contribution relative to other contributions.
-     * 
-     * @since 5.4
-     */
-    String[] constraints() default {};
+    String value() default "";
 	
 }

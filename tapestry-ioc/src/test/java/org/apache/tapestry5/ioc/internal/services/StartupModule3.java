@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.tapestry5.ioc.ObjectLocator;
+import org.apache.tapestry5.ioc.annotations.Order;
 import org.apache.tapestry5.ioc.annotations.Startup;
 import org.apache.tapestry5.ioc.services.RegistryShutdownHub;
 import org.apache.tapestry5.ioc.services.ThreadLocale;
@@ -27,7 +28,8 @@ public class StartupModule3
 {
     public static List<String> startupOrder = new ArrayList<String>();
     
-    @Startup(id = "third", constraints = {"after:second"})
+    @Startup("third")
+    @Order("after:second")
     public void third(ObjectLocator locator, Logger logger)
     {
     	startupOrder.add("third");
@@ -35,7 +37,7 @@ public class StartupModule3
     	logger.info("StartupModule2.third invoked");
     }
     
-    @Startup(id = "first")
+    @Startup
     public void first(ObjectLocator locator, Logger logger, ThreadLocale threadLocale)
     {
     	startupOrder.add("first");
@@ -45,7 +47,8 @@ public class StartupModule3
     	logger.info("StartupModule2.first invoked");
     }
     
-    @Startup(id = "second", constraints = {"after:first"})
+    @Startup("second")
+    @Order("after:StartupModule3.first")
     public void second(ObjectLocator locator, Logger logger, RegistryShutdownHub registryShutdownHub)
     {
     	startupOrder.add("second");
